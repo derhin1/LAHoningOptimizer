@@ -1,5 +1,5 @@
 {
-  "name": "starting_code",
+  "name": "honing_sim",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,18 @@
     "client:build": "react-scripts build",
     "server:dev": "nodemon index.js",
     "db:build": "node ./db/init_db",
+    "db:build2": "node ./db/init_expected_cost",
     "start:dev": "concurrently \"npm run client:build\" \"npm run client:dev\" \"npm run server:dev\"",
     "start": "node index.js",
-    "test": "jest --runInBand",
-    "db:hone": "node ./db/hone_seed"
+    "test": "jest --runInBand"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.7.0",
     "axios": "^0.19.2",
     "concurrently": "^7.0.0",
     "cors": "^2.8.5",

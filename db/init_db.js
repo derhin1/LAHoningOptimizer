@@ -8,6 +8,9 @@ async function buildTables() {
     DROP TABLE IF EXISTS adjusted_rates_7_11;
     DROP TABLE IF EXISTS adjusted_rates_12_17;
     DROP TABLE IF EXISTS adjusted_rates_18_20;
+    DROP TABLE IF EXISTS expected_costs_7_11;
+    DROP TABLE IF EXISTS expected_costs_12_17;
+    DROP TABLE IF EXISTS expected_costs_18_20;
 
 
     CREATE TABLE adjusted_rates_7_11(
@@ -35,6 +38,32 @@ async function buildTables() {
       "19" DECIMAL(11,10),
       "20" DECIMAL(11,10)
     );
+
+    CREATE TABLE expected_costs_7_11(
+      combination VARCHAR(255) NOT NULL,
+      "7" INTEGER,
+      "8" INTEGER,
+      "9" INTEGER,
+      "10" INTEGER,
+      "11" INTEGER
+      );
+
+      CREATE TABLE expected_costs_12_17(
+      combination VARCHAR(255) NOT NULL,
+      "12" INTEGER,
+      "13" INTEGER,
+      "14" INTEGER,
+      "15" INTEGER,
+      "16" INTEGER,
+      "17" INTEGER
+      );
+
+      CREATE TABLE expected_costs_18_20(
+      combination VARCHAR(255) NOT NULL,
+      "18" INTEGER,
+      "19" INTEGER,
+      "20" INTEGER
+      );
     `);
     console.log("... Tables successfully created!");
   } catch (error) {
