@@ -2,6 +2,7 @@ const { client } = require("./");
 const { Hone } = require("./index");
 const weapon_mats = require("./material-costs/weapon-mats");
 const armor_mats = require("./material-costs/armor-mats");
+const { Cost } = require("./models");
 
 async function buildTables() {
   try {
@@ -99,7 +100,8 @@ async function buildTables() {
 async function populateInitialData() {
   try {
     console.log("Starting to seed Data...");
-
+    await Promise.all(weapon_mats.map(Cost.addWeaponMaterialCostRow));
+    await Promise.all(armor_mats.map(Cost.addArmorMaterialCostRow));
     await Hone.seed();
     console.log("... Finished Seeding Honing Rates!");
   } catch (error) {
