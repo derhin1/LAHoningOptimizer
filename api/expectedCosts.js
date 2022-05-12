@@ -5,6 +5,10 @@ const { Cost } = require("../db/models");
 expectedCostsRouter.post("/addCost/7-11", async (req, res, next) => {
   try {
     console.log(req.body);
+    let cost_7_11 = await Cost.getSuccessRates_7_11(); // cost_7_11 is an array of objects with key value = to col name
+    cost_7_11.forEach((row) => {
+      console.log(row[7]);
+    });
   } catch (error) {
     next(error);
   }

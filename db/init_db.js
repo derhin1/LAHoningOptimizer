@@ -1,5 +1,8 @@
 const { client } = require("./");
 const { Hone } = require("./index");
+const weapon_mats = require("./material-costs/weapon-mats");
+const armor_mats = require("./material-costs/armor-mats");
+
 async function buildTables() {
   try {
     console.log("Beginning to build tables...");
@@ -11,6 +14,8 @@ async function buildTables() {
     DROP TABLE IF EXISTS expected_costs_7_11;
     DROP TABLE IF EXISTS expected_costs_12_17;
     DROP TABLE IF EXISTS expected_costs_18_20;
+    DROP TABLE IF EXISTS material_costs_weapon;
+    DROP TABLE IF EXISTS material_costs_armor;
 
 
     CREATE TABLE adjusted_rates_7_11(
@@ -64,6 +69,26 @@ async function buildTables() {
       "19" INTEGER,
       "20" INTEGER
       );
+
+      CREATE TABLE material_costs_weapon(
+        honing_level INTEGER,
+        destruction_stone INTEGER,
+        honor_shard INTEGER,
+        ghl INTEGER,
+        basic_fusion INTEGER,
+        silver INTEGER,
+        gold INTEGER
+      );
+
+      CREATE TABLE material_costs_armor(
+        honing_level INTEGER,
+        guardian_stone INTEGER,
+        honor_shard INTEGER,
+        ghl INTEGER,
+        basic_fusion INTEGER,
+        silver INTEGER,
+        gold INTEGER
+      );
     `);
     console.log("... Tables successfully created!");
   } catch (error) {
@@ -74,6 +99,7 @@ async function buildTables() {
 async function populateInitialData() {
   try {
     console.log("Starting to seed Data...");
+
     await Hone.seed();
     console.log("... Finished Seeding Honing Rates!");
   } catch (error) {
