@@ -95,9 +95,33 @@ async function addArmorMaterialCostRow({
   }
 }
 
+async function getWeaponMaterialCosts() {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM material_costs_weapon;
+    `);
+    return rows;
+  } catch (error) {
+    console.error("Problem getting weapon material costs...", error);
+  }
+}
+
+async function getArmorMaterialCosts() {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM material_costs_armor;
+    `);
+    return rows;
+  } catch (error) {
+    console.error("Problem getting armor material costs...", error);
+  }
+}
+
 module.exports = {
   addExpectedCost_7_11,
   getSuccessRates_7_11,
   addArmorMaterialCostRow,
   addWeaponMaterialCostRow,
+  getArmorMaterialCosts,
+  getWeaponMaterialCosts,
 };

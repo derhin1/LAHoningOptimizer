@@ -12,9 +12,12 @@ async function buildTables() {
     DROP TABLE IF EXISTS adjusted_rates_7_11;
     DROP TABLE IF EXISTS adjusted_rates_12_17;
     DROP TABLE IF EXISTS adjusted_rates_18_20;
-    DROP TABLE IF EXISTS expected_costs_7_11;
-    DROP TABLE IF EXISTS expected_costs_12_17;
-    DROP TABLE IF EXISTS expected_costs_18_20;
+    DROP TABLE IF EXISTS expected_costs_weapon_7_11;
+    DROP TABLE IF EXISTS expected_costs_weapon_12_17;
+    DROP TABLE IF EXISTS expected_costs_weapon_18_20;
+    DROP TABLE IF EXISTS expected_costs_armor_7_11;
+    DROP TABLE IF EXISTS expected_costs_armor_12_17;
+    DROP TABLE IF EXISTS expected_costs_armor_18_20;
     DROP TABLE IF EXISTS material_costs_weapon;
     DROP TABLE IF EXISTS material_costs_armor;
 
@@ -45,7 +48,7 @@ async function buildTables() {
       "20" DECIMAL(11,10)
     );
 
-    CREATE TABLE expected_costs_7_11(
+    CREATE TABLE expected_costs_weapon_7_11(
       combination VARCHAR(255) NOT NULL,
       "7" INTEGER,
       "8" INTEGER,
@@ -54,7 +57,7 @@ async function buildTables() {
       "11" INTEGER
       );
 
-      CREATE TABLE expected_costs_12_17(
+      CREATE TABLE expected_costs_weapon_12_17(
       combination VARCHAR(255) NOT NULL,
       "12" INTEGER,
       "13" INTEGER,
@@ -64,7 +67,33 @@ async function buildTables() {
       "17" INTEGER
       );
 
-      CREATE TABLE expected_costs_18_20(
+      CREATE TABLE expected_costs_weapon_18_20(
+      combination VARCHAR(255) NOT NULL,
+      "18" INTEGER,
+      "19" INTEGER,
+      "20" INTEGER
+      );
+
+       CREATE TABLE expected_costs_armor_7_11(
+      combination VARCHAR(255) NOT NULL,
+      "7" INTEGER,
+      "8" INTEGER,
+      "9" INTEGER,
+      "10" INTEGER,
+      "11" INTEGER
+      );
+
+      CREATE TABLE expected_costs_armor_12_17(
+      combination VARCHAR(255) NOT NULL,
+      "12" INTEGER,
+      "13" INTEGER,
+      "14" INTEGER,
+      "15" INTEGER,
+      "16" INTEGER,
+      "17" INTEGER
+      );
+
+      CREATE TABLE expected_costs_armor_18_20(
       combination VARCHAR(255) NOT NULL,
       "18" INTEGER,
       "19" INTEGER,
