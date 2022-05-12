@@ -28,12 +28,25 @@ export async function getAPIHealth() {
   }
 }
 
-export async function postNewMarketPrices(prices) {
+export async function updateExpectedCost_7_11(prices) {
   try {
-    const { data } = await axios.post(
-      "/api/expectedCosts/addCost/7-11",
-      prices
-    );
+    await axios.patch("/api/expectedCosts/addCost/7-11", prices);
+  } catch (error) {
+    console.error(err);
+  }
+}
+
+export async function updateExpectedCost_12_17(prices) {
+  try {
+    await axios.patch("/api/expectedCosts/addCost/12-17", prices);
+  } catch (error) {
+    console.error(err);
+  }
+}
+
+export async function updateExpectedCost_18_20(prices) {
+  try {
+    await axios.patch("/api/expectedCosts/addCost/18-20", prices);
   } catch (error) {
     console.error(err);
   }

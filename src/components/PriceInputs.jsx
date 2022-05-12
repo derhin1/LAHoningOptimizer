@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
-import { postNewMarketPrices } from "../axios-services";
+import {
+  updateExpectedCost_7_11,
+  updateExpectedCost_12_17,
+  updateExpectedCost_18_20,
+} from "../axios-services";
 const PriceInputs = () => {
   const [guardianPrice, setGuardianPrice] = useState(0);
   const [destructionPrice, setDestructionPrice] = useState(0);
@@ -20,7 +24,9 @@ const PriceInputs = () => {
       solarBlessingPrice,
       solarProtectionPrice,
     ];
-    postNewMarketPrices(priceArr);
+    updateExpectedCost_7_11(priceArr);
+    updateExpectedCost_12_17(priceArr);
+    updateExpectedCost_18_20(priceArr);
   }
   return (
     <div className="MarketPrice">

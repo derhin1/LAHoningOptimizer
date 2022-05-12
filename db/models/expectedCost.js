@@ -22,7 +22,7 @@ async function addExpectedCost_weapon_7_11(fields = {}) {
     );
     return rows;
   } catch (error) {
-    console.error("problem adding cost...", error);
+    console.error("problem adding weapon cost to 7-11", error);
   }
 }
 
@@ -47,7 +47,109 @@ async function addExpectedCost_armor_7_11(fields = {}) {
     );
     return rows;
   } catch (error) {
-    console.error("problem adding cost...", error);
+    console.error("problem adding armor cost to 7-11", error);
+  }
+}
+
+async function addExpectedCost_weapon_12_17(fields = {}) {
+  const { combination } = fields;
+  delete fields.combination;
+
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 2}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const { rows } = await client.query(
+      `
+    UPDATE expected_costs_weapon_12_17
+    SET ${setString}
+    WHERE combination = $1
+    RETURNING *;
+    `,
+      [combination, ...Object.values(fields)]
+    );
+    return rows;
+  } catch (error) {
+    console.error("problem adding weapon cost to 12-17", error);
+  }
+}
+
+async function addExpectedCost_armor_12_17(fields = {}) {
+  const { combination } = fields;
+  delete fields.combination;
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 2}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const { rows } = await client.query(
+      `
+    UPDATE expected_costs_armor_12_17
+    SET ${setString}
+    WHERE combination = $1
+    RETURNING *;
+    `,
+      [combination, ...Object.values(fields)]
+    );
+    return rows;
+  } catch (error) {
+    console.error("problem adding armor cost to 12-17", error);
+  }
+}
+
+async function addExpectedCost_weapon_18_20(fields = {}) {
+  const { combination } = fields;
+  delete fields.combination;
+
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 2}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const { rows } = await client.query(
+      `
+    UPDATE expected_costs_weapon_18_20
+    SET ${setString}
+    WHERE combination = $1
+    RETURNING *;
+    `,
+      [combination, ...Object.values(fields)]
+    );
+    return rows;
+  } catch (error) {
+    console.error("problem adding weapon cost to 18-20", error);
+  }
+}
+
+async function addExpectedCost_armor_18_20(fields = {}) {
+  const { combination } = fields;
+  delete fields.combination;
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 2}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const { rows } = await client.query(
+      `
+    UPDATE expected_costs_armor_18_20
+    SET ${setString}
+    WHERE combination = $1
+    RETURNING *;
+    `,
+      [combination, ...Object.values(fields)]
+    );
+    return rows;
+  } catch (error) {
+    console.error("problem adding armor cost to 18-20", error);
   }
 }
 
@@ -59,6 +161,28 @@ async function getSuccessRates_7_11() {
     return rows;
   } catch (error) {
     console.error("Problem getting success rates 7-11", error);
+  }
+}
+
+async function getSuccessRates_12_17() {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM adjusted_rates_12_17;
+    `);
+    return rows;
+  } catch (error) {
+    console.error("Problem getting success rates 12-17", error);
+  }
+}
+
+async function getSuccessRates_18_20() {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM adjusted_rates_18_20;
+    `);
+    return rows;
+  } catch (error) {
+    console.error("Problem getting success rates 12-17", error);
   }
 }
 
@@ -160,4 +284,10 @@ module.exports = {
   getArmorMaterialCosts,
   getWeaponMaterialCosts,
   addExpectedCost_armor_7_11,
+  getSuccessRates_12_17,
+  addExpectedCost_armor_12_17,
+  addExpectedCost_weapon_12_17,
+  addExpectedCost_armor_18_20,
+  addExpectedCost_weapon_18_20,
+  getSuccessRates_18_20,
 };
