@@ -1,14 +1,49 @@
 const client = require("../client");
 
-async function addExpectedCost_7_11(costs) {
+async function addExpectedCost_weapon_7_11(fields = {}) {
+  const { combination } = fields;
+  delete fields.combination;
+
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 2}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
   try {
     const { rows } = await client.query(
       `
-    INSERT INTO expected_costs_7_11 ('7', '8', '9', '10', '11')
-    VALUES ($1,$2,$3,$4,$5)
-    RETURNING *
+    UPDATE expected_costs_weapon_7_11
+    SET ${setString}
+    WHERE combination = $1
+    RETURNING *;
     `,
-      [costs]
+      [combination, ...Object.values(fields)]
+    );
+    return rows;
+  } catch (error) {
+    console.error("problem adding cost...", error);
+  }
+}
+
+async function addExpectedCost_armor_7_11(fields = {}) {
+  const { combination } = fields;
+  delete fields.combination;
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 2}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const { rows } = await client.query(
+      `
+    UPDATE expected_costs_armor_7_11
+    SET ${setString}
+    WHERE combination = $1
+    RETURNING *;
+    `,
+      [combination, ...Object.values(fields)]
     );
     return rows;
   } catch (error) {
@@ -118,10 +153,11 @@ async function getArmorMaterialCosts() {
 }
 
 module.exports = {
-  addExpectedCost_7_11,
+  addExpectedCost_weapon_7_11,
   getSuccessRates_7_11,
   addArmorMaterialCostRow,
   addWeaponMaterialCostRow,
   getArmorMaterialCosts,
   getWeaponMaterialCosts,
+  addExpectedCost_armor_7_11,
 };
