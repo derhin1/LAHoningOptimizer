@@ -134,6 +134,7 @@ expectedCostsRouter.patch("/addCost/7-11", async (req, res, next) => {
       Cost.addExpectedCost_weapon_7_11(expectedWeaponCost);
       Cost.addExpectedCost_armor_7_11(expectedArmorCost);
     });
+    res.send({ message: "Successfully updated market for 7-11" });
     console.log("successfully updated Market for 7-11");
   } catch (error) {
     next(error);
@@ -292,6 +293,7 @@ expectedCostsRouter.patch("/addCost/12-17", async (req, res, next) => {
       Cost.addExpectedCost_weapon_12_17(expectedWeaponCost);
       Cost.addExpectedCost_armor_12_17(expectedArmorCost);
     });
+    res.send({ message: "Successfully updated market for 12-17" });
     console.log("successfully updated market for 12-17");
   } catch (error) {
     next(error);
@@ -392,6 +394,7 @@ expectedCostsRouter.patch("/addCost/18-20", async (req, res, next) => {
       Cost.addExpectedCost_weapon_18_20(expectedWeaponCost);
       Cost.addExpectedCost_armor_18_20(expectedArmorCost);
     });
+    res.send({ message: "Successfully updated market for 18-20" });
     console.log("successfully updated Market for 18-20");
   } catch (error) {
     next(error);

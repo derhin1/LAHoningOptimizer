@@ -30,3 +30,12 @@ body {
 .cost-table{
   width: 80rem;
 }
+
+.update-market-message{
+  font-size: 3rem;
+}
+
+.testing{
+  display: flex;
+  flex-direction: column;
+}
