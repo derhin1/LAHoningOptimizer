@@ -440,4 +440,46 @@ expectedCostsRouter.post("/armor/18-20", async (req, res, next) => {
   }
 });
 
+expectedCostsRouter.post("/weapon/7-11", async (req, res, next) => {
+  try {
+    let costArray = await Cost.getExpectedWeaponCost_7_11(`${req.body.level}`);
+    let filtered = costArray.filter((obj) => {
+      if (obj.combination[obj.combination.length - 1] === "0") {
+        return true;
+      }
+    });
+    res.send(filtered);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/weapon/12-17", async (req, res, next) => {
+  try {
+    let costArray = await Cost.getExpectedWeaponCost_12_17(`${req.body.level}`);
+    let filtered = costArray.filter((obj) => {
+      if (obj.combination[obj.combination.length - 1] === "0") {
+        return true;
+      }
+    });
+    res.send(filtered);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/weapon/18-20", async (req, res, next) => {
+  try {
+    let costArray = await Cost.getExpectedWeaponCost_18_20(`${req.body.level}`);
+    let filtered = costArray.filter((obj) => {
+      if (obj.combination[obj.combination.length - 1] === "0") {
+        return true;
+      }
+    });
+    res.send(filtered);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = expectedCostsRouter;

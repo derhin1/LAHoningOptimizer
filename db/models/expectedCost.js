@@ -309,6 +309,39 @@ async function getExpectedArmorCost_18_20(num) {
   }
 }
 
+async function getExpectedWeaponCost_7_11(num) {
+  try {
+    const { rows } = await client.query(`
+    SELECT combination, "${num}" FROM expected_costs_weapon_7_11;
+    `);
+    return rows;
+  } catch (error) {
+    console.error("Problem getting Expected Weapon Cost 7-11");
+  }
+}
+
+async function getExpectedWeaponCost_12_17(num) {
+  try {
+    const { rows } = await client.query(`
+    SELECT combination, "${num}" FROM expected_costs_weapon_12_17;
+    `);
+    return rows;
+  } catch (error) {
+    console.error("Problem getting Expected Weapon Cost 12-17");
+  }
+}
+
+async function getExpectedWeaponCost_18_20(num) {
+  try {
+    const { rows } = await client.query(`
+    SELECT combination, "${num}" FROM expected_costs_weapon_18_20;
+    `);
+    return rows;
+  } catch (error) {
+    console.error("Problem getting Expected Weapon Cost 18-20");
+  }
+}
+
 module.exports = {
   addExpectedCost_weapon_7_11,
   getSuccessRates_7_11,
@@ -326,4 +359,7 @@ module.exports = {
   getExpectedArmorCost_7_11,
   getExpectedArmorCost_12_17,
   getExpectedArmorCost_18_20,
+  getExpectedWeaponCost_7_11,
+  getExpectedWeaponCost_12_17,
+  getExpectedWeaponCost_18_20,
 };

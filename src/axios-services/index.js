@@ -84,3 +84,36 @@ export async function getExpectedArmorCost_18_20(level) {
     console.error(error);
   }
 }
+
+export async function getExpectedWeaponCost_7_11(level) {
+  try {
+    const { data } = await axios.post("/api/expectedCosts/weapon/7-11", {
+      level,
+    });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getExpectedWeaponCost_12_17(level) {
+  try {
+    const { data } = await axios.post("/api/expectedCosts/weapon/12-17", {
+      level,
+    });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getExpectedWeaponCost_18_20(level) {
+  try {
+    const { data } = await axios.post("/api/expectedCosts/weapon/18-20", {
+      level,
+    });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
