@@ -4,8 +4,9 @@ const fastcsv = require("fast-csv");
 const DB_NAME = "la-sim";
 const DB_URL =
   process.env.DATABASE_URL || `postgres://localhost:5432/${DB_NAME}`;
+let pool;
 if (process.env.CI) {
-  const pool = new Pool({
+  pool = new Pool({
     host: "localhost",
     user: "postgres",
     database: "la-sim",
