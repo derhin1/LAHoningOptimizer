@@ -10,6 +10,8 @@ import {
   ToggleButtonGroup,
 } from "@mui/material";
 import useAuth from "../hooks/useAuth.js";
+import { calculateHoning } from "./";
+import { toast } from "react-toastify";
 
 const UpgradeInputs = () => {
   const { startingValue, setStartingValue, endValue, setEndValue } = useAuth();
@@ -26,10 +28,6 @@ const UpgradeInputs = () => {
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-
-  function calculateHoning() {
-    console.log(alignment);
-  }
 
   return (
     <div className="honing-values">
@@ -97,7 +95,18 @@ const UpgradeInputs = () => {
           </Select>
         </FormControl>
       </Box>
-      <Button onClick={calculateHoning} variant="contained">
+      <Button
+        onClick={() => {
+          if (startingValue === endValue) {
+            toast.error("Start and End Inputs must be different");
+          } else if (startingValue > endValue) {
+            toast.error("Start must be lower than End input");
+          } else {
+            calculateHoning(alignment, startingValue, endValue);
+          }
+        }}
+        variant="contained"
+      >
         Calculate
       </Button>
     </div>

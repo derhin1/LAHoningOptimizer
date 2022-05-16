@@ -276,6 +276,18 @@ async function getArmorMaterialCosts() {
   }
 }
 
+async function getExpectedArmorCost_7_11(num) {
+  try {
+    console.log(typeof num, "in db");
+    const { rows } = await client.query(`
+    SELECT combination, "${num}" FROM expected_costs_armor_7_11;
+    `);
+    return rows;
+  } catch (error) {
+    console.error("Problem getting Expected Armor Cost 7-11");
+  }
+}
+
 module.exports = {
   addExpectedCost_weapon_7_11,
   getSuccessRates_7_11,
@@ -290,4 +302,5 @@ module.exports = {
   addExpectedCost_armor_18_20,
   addExpectedCost_weapon_18_20,
   getSuccessRates_18_20,
+  getExpectedArmorCost_7_11,
 };

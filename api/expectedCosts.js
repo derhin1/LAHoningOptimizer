@@ -397,4 +397,19 @@ expectedCostsRouter.patch("/addCost/18-20", async (req, res, next) => {
   }
 });
 
+expectedCostsRouter.post("/armor/7-11", async (req, res, next) => {
+  try {
+    console.log(typeof req.body.level);
+    let costArray = await Cost.getExpectedArmorCost_7_11(`${req.body.level}`);
+    let filtered = costArray.filter((obj) => {
+      if (obj.combination[obj.combination.length - 1] === "0") {
+        return true;
+      }
+    });
+    res.send(filtered);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = expectedCostsRouter;
