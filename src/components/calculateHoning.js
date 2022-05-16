@@ -32,6 +32,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         );
         protectionCount = parseInt(protectionCount);
         let costRow = {};
+        costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
         costRow.protectionCount = protectionCount;
@@ -59,6 +60,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         );
         protectionCount = parseInt(protectionCount);
         let costRow = {};
+        costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
         costRow.protectionCount = protectionCount;
@@ -86,6 +88,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         );
         protectionCount = parseInt(protectionCount);
         let costRow = {};
+        costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
         costRow.protectionCount = protectionCount;
