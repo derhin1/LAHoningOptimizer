@@ -301,6 +301,7 @@ expectedCostsRouter.patch("/addCost/12-17", async (req, res, next) => {
 expectedCostsRouter.patch("/addCost/18-20", async (req, res, next) => {
   try {
     let cost_18_20 = await Cost.getSuccessRates_18_20();
+    console.log(cost_18_20);
     let materialArmorCosts = await Cost.getArmorMaterialCosts();
     let materialWeaponCosts = await Cost.getWeaponMaterialCosts();
     let expectedWeaponCost = {};
@@ -399,8 +400,35 @@ expectedCostsRouter.patch("/addCost/18-20", async (req, res, next) => {
 
 expectedCostsRouter.post("/armor/7-11", async (req, res, next) => {
   try {
-    console.log(typeof req.body.level);
     let costArray = await Cost.getExpectedArmorCost_7_11(`${req.body.level}`);
+    let filtered = costArray.filter((obj) => {
+      if (obj.combination[obj.combination.length - 1] === "0") {
+        return true;
+      }
+    });
+    res.send(filtered);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/armor/12-17", async (req, res, next) => {
+  try {
+    let costArray = await Cost.getExpectedArmorCost_12_17(`${req.body.level}`);
+    let filtered = costArray.filter((obj) => {
+      if (obj.combination[obj.combination.length - 1] === "0") {
+        return true;
+      }
+    });
+    res.send(filtered);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/armor/18-20", async (req, res, next) => {
+  try {
+    let costArray = await Cost.getExpectedArmorCost_18_20(`${req.body.level}`);
     let filtered = costArray.filter((obj) => {
       if (obj.combination[obj.combination.length - 1] === "0") {
         return true;

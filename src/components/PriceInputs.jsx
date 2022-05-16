@@ -14,7 +14,7 @@ const PriceInputs = () => {
   const [solarBlessingPrice, setSolarBlessingPrice] = useState(0);
   const [solarProtectionPrice, setSolarProtectionPrice] = useState(0);
 
-  function updateHandler() {
+  async function updateHandler() {
     let priceArr = [
       guardianPrice,
       destructionPrice,
@@ -24,9 +24,9 @@ const PriceInputs = () => {
       solarBlessingPrice,
       solarProtectionPrice,
     ];
-    updateExpectedCost_7_11(priceArr);
-    updateExpectedCost_12_17(priceArr);
-    updateExpectedCost_18_20(priceArr);
+    await updateExpectedCost_7_11(priceArr);
+    await updateExpectedCost_12_17(priceArr);
+    await updateExpectedCost_18_20(priceArr);
   }
   return (
     <div className="MarketPrice">
