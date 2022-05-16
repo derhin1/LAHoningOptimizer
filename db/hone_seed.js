@@ -1,16 +1,24 @@
 const fs = require("fs");
 const { Pool } = require("pg");
 const fastcsv = require("fast-csv");
-const pool = new Pool({
-  host: "localhost",
-  user: "postgres",
-  database: "la-sim",
-  password: "123",
-  port: 5432,
-  idleTimeoutMillis: 60000,
-  connectionTimeoutMillis: 0,
-  allowExitOnIdle: true,
-});
+const DB_NAME = "la-sim";
+const DB_URL =
+  process.env.DATABASE_URL || `postgres://localhost:5432/${DB_NAME}`;
+if (process.env.CI) {
+  const pool = new Pool({
+    host: "localhost",
+    user: "postgres",
+    database: "la-sim",
+    password: "123",
+    port: 5432,
+    idleTimeoutMillis: 60000,
+    connectionTimeoutMillis: 0,
+    allowExitOnIdle: true,
+  });
+} else {
+  // local / heroku client config
+  pool = new Pool(DB_URL);
+}
 
 function seed_7_11() {
   let stream = fs.createReadStream(__dirname + "/csv/adjusted_rates_7-11.csv");
