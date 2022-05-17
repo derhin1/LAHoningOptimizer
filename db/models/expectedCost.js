@@ -410,6 +410,91 @@ async function getMarketPrices() {
   }
 }
 
+async function getMinimumAdjustedRate_7_11({ level, combination }) {
+  try {
+    const {
+      rows: [singleRate],
+    } = await client.query(
+      `
+    SELECT "${level}" FROM adjusted_rates_7_11
+    WHERE combination = $1
+    `,
+      [combination]
+    );
+    return singleRate;
+  } catch (error) {
+    console.error("Problem getting minimum adjusted rate");
+  }
+}
+
+async function getMinimumAdjustedRate_12_17({ level, combination }) {
+  try {
+    const {
+      rows: [singleRate],
+    } = await client.query(
+      `
+    SELECT "${level}" FROM adjusted_rates_12_17
+    WHERE combination = $1
+    `,
+      [combination]
+    );
+    return singleRate;
+  } catch (error) {
+    console.error("Problem getting minimum adjusted rate");
+  }
+}
+
+async function getMinimumAdjustedRate_18_20({ level, combination }) {
+  try {
+    const {
+      rows: [singleRate],
+    } = await client.query(
+      `
+    SELECT "${level}" FROM adjusted_rates_18_20
+    WHERE combination = $1
+    `,
+      [combination]
+    );
+    return singleRate;
+  } catch (error) {
+    console.error("Problem getting minimum adjusted rate");
+  }
+}
+
+async function getSingleMaterialCostArmor({ level }) {
+  try {
+    const {
+      rows: [singleCost],
+    } = await client.query(
+      `
+    SELECT * FROM material_costs_armor
+    WHERE honing_level = $1
+    `,
+      [level]
+    );
+    return singleCost;
+  } catch (error) {
+    console.error("Problem getting specific material cost 7-11");
+  }
+}
+
+async function getSingleMaterialCostWeapon({ level }) {
+  try {
+    const {
+      rows: [singleCost],
+    } = await client.query(
+      `
+    SELECT * FROM material_costs_weapon
+    WHERE honing_level = $1
+    `,
+      [level]
+    );
+    return singleCost;
+  } catch (error) {
+    console.error("Problem getting specific material cost 7-11");
+  }
+}
+
 module.exports = {
   addExpectedCost_weapon_7_11,
   getSuccessRates_7_11,
@@ -433,4 +518,9 @@ module.exports = {
   updateMarketPrices,
   addInitialMarketPrice,
   getMarketPrices,
+  getMinimumAdjustedRate_7_11,
+  getMinimumAdjustedRate_18_20,
+  getMinimumAdjustedRate_12_17,
+  getSingleMaterialCostArmor,
+  getSingleMaterialCostWeapon,
 };

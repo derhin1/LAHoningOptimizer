@@ -135,7 +135,6 @@ expectedCostsRouter.patch("/addCost/7-11", async (req, res, next) => {
       Cost.addExpectedCost_armor_7_11(expectedArmorCost);
     });
     res.send({ message: "Successfully updated market for 7-11" });
-    console.log("successfully updated Market for 7-11");
   } catch (error) {
     next(error);
   }
@@ -294,7 +293,6 @@ expectedCostsRouter.patch("/addCost/12-17", async (req, res, next) => {
       Cost.addExpectedCost_armor_12_17(expectedArmorCost);
     });
     res.send({ message: "Successfully updated market for 12-17" });
-    console.log("successfully updated market for 12-17");
   } catch (error) {
     next(error);
   }
@@ -303,12 +301,10 @@ expectedCostsRouter.patch("/addCost/12-17", async (req, res, next) => {
 expectedCostsRouter.patch("/addCost/18-20", async (req, res, next) => {
   try {
     let cost_18_20 = await Cost.getSuccessRates_18_20();
-    console.log(cost_18_20);
     let materialArmorCosts = await Cost.getArmorMaterialCosts();
     let materialWeaponCosts = await Cost.getWeaponMaterialCosts();
     let expectedWeaponCost = {};
     let expectedArmorCost = {};
-    console.log(materialWeaponCosts);
     cost_18_20.forEach((row) => {
       expectedWeaponCost.combination = row.combination;
       expectedArmorCost.combination = row.combination;
@@ -395,7 +391,6 @@ expectedCostsRouter.patch("/addCost/18-20", async (req, res, next) => {
       Cost.addExpectedCost_armor_18_20(expectedArmorCost);
     });
     res.send({ message: "Successfully updated market for 18-20" });
-    console.log("successfully updated Market for 18-20");
   } catch (error) {
     next(error);
   }
@@ -496,7 +491,6 @@ expectedCostsRouter.patch("/market/update", async (req, res, next) => {
     priceObj.solarBlessing = req.body[5];
     priceObj.solarProtection = req.body[6];
     priceObj.lastUpdated = new Date().toLocaleString();
-    console.log(priceObj);
     let updatedPrices = await Cost.updateMarketPrices(priceObj);
     res.send({ message: "Successfully updated Market", updatedPrices });
   } catch (error) {
@@ -508,6 +502,51 @@ expectedCostsRouter.get("/market", async (req, res, next) => {
   try {
     let marketPrices = await Cost.getMarketPrices();
     res.send(marketPrices);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/rates/7-11", async (req, res, next) => {
+  try {
+    let successRate = await Cost.getMinimumAdjustedRate_7_11(req.body);
+    res.send(successRate);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/rates/12-17", async (req, res, next) => {
+  try {
+    let successRate = await Cost.getMinimumAdjustedRate_12_17(req.body);
+    res.send(successRate);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/rates/18-20", async (req, res, next) => {
+  try {
+    let successRate = await Cost.getMinimumAdjustedRate_18_20(req.body);
+    res.send(successRate);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/material/armor", async (req, res, next) => {
+  try {
+    let materialCost = await Cost.getSingleMaterialCostArmor(req.body);
+    res.send(materialCost);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/material/weapon", async (req, res, next) => {
+  try {
+    let materialCost = await Cost.getSingleMaterialCostWeapon(req.body);
+    res.send(materialCost);
   } catch (error) {
     next(error);
   }
