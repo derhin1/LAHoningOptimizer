@@ -16,7 +16,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
   let lowestCostArr = [];
   let start = startingValue;
   let end = endValue;
-  if (alignment === "armor") {
+  if (alignment === "Armor") {
     for (let i = 0; i < end - start; i++) {
       startingValue++;
       if (startingValue <= 11) {
@@ -62,6 +62,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.blessingCount = blessingCount;
         costRow.protectionCount = protectionCount;
         costRow.minCost = min[startingValue];
+        costRow.alignment = alignment;
         lowestCostArr.push(costRow);
       } else if (startingValue <= 17) {
         let costs = await getExpectedArmorCost_12_17(startingValue);
@@ -106,6 +107,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.blessingCount = blessingCount;
         costRow.protectionCount = protectionCount;
         costRow.minCost = min[startingValue];
+        costRow.alignment = alignment;
         lowestCostArr.push(costRow);
       } else if (startingValue <= 20) {
         let costs = await getExpectedArmorCost_18_20(startingValue);
@@ -150,6 +152,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.blessingCount = blessingCount;
         costRow.protectionCount = protectionCount;
         costRow.minCost = min[startingValue];
+        costRow.alignment = alignment;
         lowestCostArr.push(costRow);
       }
     }
@@ -200,6 +203,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.blessingCount = blessingCount;
         costRow.protectionCount = protectionCount;
         costRow.minCost = min[startingValue];
+        costRow.alignment = alignment;
         lowestCostArr.push(costRow);
       } else if (startingValue <= 17) {
         let costs = await getExpectedWeaponCost_12_17(startingValue);
@@ -244,6 +248,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.blessingCount = blessingCount;
         costRow.protectionCount = protectionCount;
         costRow.minCost = min[startingValue];
+        costRow.alignment = alignment;
         lowestCostArr.push(costRow);
       } else if (startingValue <= 20) {
         let costs = await getExpectedWeaponCost_18_20(startingValue);
@@ -288,6 +293,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.blessingCount = blessingCount;
         costRow.protectionCount = protectionCount;
         costRow.minCost = min[startingValue];
+        costRow.alignment = alignment;
         lowestCostArr.push(costRow);
       }
     }
