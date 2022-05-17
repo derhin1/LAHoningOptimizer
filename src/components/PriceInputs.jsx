@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Button, Backdrop, CircularProgress } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Backdrop,
+  CircularProgress,
+  InputAdornment,
+} from "@mui/material";
 import {
   updateExpectedCost_7_11,
   updateExpectedCost_12_17,
@@ -7,6 +13,14 @@ import {
   updateMarketPrices,
   getMarketPrices,
 } from "../axios-services";
+import guardianStone from "../images/guardianStone.png";
+import destructionStone from "../images/destructionStone.png";
+import greatHonorLeapstone from "../images/greatHonorLeapstone.png";
+import solarBlessing from "../images/solarBlessing.png";
+import basicFusion from "../images/basicFusion.png";
+import solarGrace from "../images/solarGrace.png";
+import solarProtection from "../images/solarProtection.png";
+
 const PriceInputs = () => {
   const [guardianPrice, setGuardianPrice] = useState(0);
   const [destructionPrice, setDestructionPrice] = useState(0);
@@ -80,15 +94,40 @@ const PriceInputs = () => {
           label="1 Guardian Stone"
           variant="outlined"
           value={guardianPrice}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <img
+                  src={guardianStone}
+                  width={"40px"}
+                  height={"40px"}
+                  alt={`guardian stone`}
+                />
+              </InputAdornment>
+            ),
+          }}
           onChange={(e) => {
             setGuardianPrice(e.target.value);
           }}
         />
+
         <TextField
           id="outlined-basic"
           label="1 Destruction Stone"
           variant="outlined"
           value={destructionPrice}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <img
+                  src={destructionStone}
+                  width={"40px"}
+                  height={"40px"}
+                  alt={`guardian stone`}
+                />
+              </InputAdornment>
+            ),
+          }}
           onChange={(e) => {
             setDestructionPrice(e.target.value);
           }}
@@ -98,6 +137,18 @@ const PriceInputs = () => {
           label="Great Honor Leapstone"
           variant="outlined"
           value={GHLPrice}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <img
+                  src={greatHonorLeapstone}
+                  width={"45px"}
+                  height={"45px"}
+                  alt={`guardian stone`}
+                />
+              </InputAdornment>
+            ),
+          }}
           onChange={(e) => {
             setGHLPrice(e.target.value);
           }}
@@ -110,12 +161,36 @@ const PriceInputs = () => {
           onChange={(e) => {
             setBasicFusionPrice(e.target.value);
           }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <img
+                  src={basicFusion}
+                  width={"60px"}
+                  height={"60px"}
+                  alt={`guardian stone`}
+                />
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           id="outlined-basic"
           label="Solar Grace"
           variant="outlined"
           value={solarGracePrice}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <img
+                  src={solarGrace}
+                  width={"45px"}
+                  height={"45px"}
+                  alt={`guardian stone`}
+                />
+              </InputAdornment>
+            ),
+          }}
           onChange={(e) => {
             setSolarGracePrice(e.target.value);
           }}
@@ -125,6 +200,18 @@ const PriceInputs = () => {
           label="Solar Blessing"
           variant="outlined"
           value={solarBlessingPrice}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <img
+                  src={solarBlessing}
+                  width={"45px"}
+                  height={"45px"}
+                  alt={`guardian stone`}
+                />
+              </InputAdornment>
+            ),
+          }}
           onChange={(e) => {
             setSolarBlessingPrice(e.target.value);
           }}
@@ -136,6 +223,18 @@ const PriceInputs = () => {
           value={solarProtectionPrice}
           onChange={(e) => {
             setSolarProtectionPrice(e.target.value);
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <img
+                  src={solarProtection}
+                  width={"45px"}
+                  height={"45px"}
+                  alt={`guardian stone`}
+                />
+              </InputAdornment>
+            ),
           }}
         />
         <div>Last Updated: {lastUpdated}</div>
