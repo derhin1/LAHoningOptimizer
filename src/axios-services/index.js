@@ -129,3 +129,24 @@ export async function getExpectedWeaponCost_18_20(level) {
     console.error(error);
   }
 }
+
+export async function updateMarketPrices(prices) {
+  try {
+    const { data } = await axios.patch(
+      "/api/expectedCosts/market/update",
+      prices
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getMarketPrices() {
+  try {
+    const { data } = await axios.get("/api/expectedCosts/market");
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

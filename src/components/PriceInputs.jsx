@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
 import {
   updateExpectedCost_7_11,
   updateExpectedCost_12_17,
   updateExpectedCost_18_20,
+  updateMarketPrices,
+  getMarketPrices,
 } from "../axios-services";
 import { Backdrop, CircularProgress } from "@mui/material";
 const PriceInputs = () => {
@@ -14,6 +16,7 @@ const PriceInputs = () => {
   const [solarGracePrice, setSolarGracePrice] = useState(0);
   const [solarBlessingPrice, setSolarBlessingPrice] = useState(0);
   const [solarProtectionPrice, setSolarProtectionPrice] = useState(0);
+  const [lastUpdated, setLastUpdated] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function updateHandler() {
@@ -27,6 +30,7 @@ const PriceInputs = () => {
       solarProtectionPrice,
     ];
     setLoading(true);
+    updateMarketPrices(priceArr);
     await updateExpectedCost_7_11(priceArr);
     await updateExpectedCost_12_17(priceArr);
     let response = await updateExpectedCost_18_20(priceArr);
@@ -34,6 +38,32 @@ const PriceInputs = () => {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    try {
+      async function loadMarketPrices() {
+        let marketPrices = await getMarketPrices();
+        console.log(marketPrices);
+        if (marketPrices.length) {
+          setGuardianPrice(marketPrices[0].guardianStone);
+          setDestructionPrice(marketPrices[0].destructionStone);
+          setGHLPrice(marketPrices[0].ghl);
+          setBasicFusionPrice(marketPrices[0].basicFusion);
+          setSolarGracePrice(marketPrices[0].solarGrace);
+          setSolarBlessingPrice(marketPrices[0].solarBlessing);
+          setSolarProtectionPrice(marketPrices[0].solarProtection);
+          let date = new Date(marketPrices[0].lastUpdated);
+          console.log(date.toLocaleString());
+          setLastUpdated(date.toLocaleString());
+        }
+        return marketPrices;
+      }
+      loadMarketPrices();
+    } catch (error) {
+      throw error;
+    }
+  }, []);
+
   return (
     <>
       {loading ? (
@@ -111,6 +141,7 @@ const PriceInputs = () => {
             setSolarProtectionPrice(e.target.value);
           }}
         />
+        <div>Last Updated: {lastUpdated}</div>
         <Button onClick={updateHandler} variant="contained">
           Update Market Data
         </Button>

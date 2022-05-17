@@ -485,4 +485,32 @@ expectedCostsRouter.post("/weapon/18-20", async (req, res, next) => {
   }
 });
 
+expectedCostsRouter.patch("/market/update", async (req, res, next) => {
+  try {
+    let priceObj = {};
+    priceObj.guardianStone = req.body[0];
+    priceObj.destructionStone = req.body[1];
+    priceObj.ghl = req.body[2];
+    priceObj.basicFusion = req.body[3];
+    priceObj.solarGrace = req.body[4];
+    priceObj.solarBlessing = req.body[5];
+    priceObj.solarProtection = req.body[6];
+    priceObj.lastUpdated = new Date().toLocaleString();
+    console.log(priceObj);
+    let updatedPrices = await Cost.updateMarketPrices(priceObj);
+    res.send({ message: "Successfully updated Market", updatedPrices });
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.get("/market", async (req, res, next) => {
+  try {
+    let marketPrices = await Cost.getMarketPrices();
+    res.send(marketPrices);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = expectedCostsRouter;
