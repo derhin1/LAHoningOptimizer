@@ -515,8 +515,25 @@ expectedCostsRouter.get("/market", async (req, res, next) => {
 
 expectedCostsRouter.post("/rates/7-11", async (req, res, next) => {
   try {
-    console.log(req.body);
     let successRate = await Cost.getMinimumAdjustedRate_7_11(req.body);
+    res.send(successRate);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/rates/12-17", async (req, res, next) => {
+  try {
+    let successRate = await Cost.getMinimumAdjustedRate_12_17(req.body);
+    res.send(successRate);
+  } catch (error) {
+    next(error);
+  }
+});
+
+expectedCostsRouter.post("/rates/18-20", async (req, res, next) => {
+  try {
+    let successRate = await Cost.getMinimumAdjustedRate_18_20(req.body);
     res.send(successRate);
   } catch (error) {
     next(error);

@@ -162,3 +162,27 @@ export async function getAdjustedRate_7_11(combination) {
     console.error(error);
   }
 }
+
+export async function getAdjustedRate_12_17(combination) {
+  try {
+    const { data } = await axios.post(
+      "/api/expectedCosts/rates/12-17",
+      combination
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getAdjustedRate_18_20(combination) {
+  try {
+    const { data } = await axios.post(
+      "/api/expectedCosts/rates/18-20",
+      combination
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -6,7 +6,10 @@ import {
   getExpectedWeaponCost_12_17,
   getExpectedWeaponCost_18_20,
   getAdjustedRate_7_11,
+  getAdjustedRate_12_17,
+  getAdjustedRate_18_20,
 } from "../axios-services";
+
 async function calculateHoning(alignment, startingValue, endValue) {
   let lowestCostArr = [];
   let start = startingValue;
@@ -25,6 +28,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         };
         let adjustedRate = await getAdjustedRate_7_11(combinationObj);
         let floatedRate = parseFloat(adjustedRate[startingValue]);
+        let avgNumClicks = 1 / floatedRate;
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -41,7 +45,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         );
         protectionCount = parseInt(protectionCount);
         let costRow = {};
-        costRow.avgNumClicks = 1 / floatedRate;
+        costRow.avgNumClicks = +avgNumClicks.toFixed(2);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -53,6 +57,13 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
+        let combinationObj = {
+          combination: min.combination,
+          level: startingValue,
+        };
+        let adjustedRate = await getAdjustedRate_12_17(combinationObj);
+        let floatedRate = parseFloat(adjustedRate[startingValue]);
+        let avgNumClicks = 1 / floatedRate;
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -69,6 +80,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         );
         protectionCount = parseInt(protectionCount);
         let costRow = {};
+        costRow.avgNumClicks = +avgNumClicks.toFixed(2);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -80,6 +92,13 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
+        let combinationObj = {
+          combination: min.combination,
+          level: startingValue,
+        };
+        let adjustedRate = await getAdjustedRate_18_20(combinationObj);
+        let floatedRate = parseFloat(adjustedRate[startingValue]);
+        let avgNumClicks = 1 / floatedRate;
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -96,6 +115,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         );
         protectionCount = parseInt(protectionCount);
         let costRow = {};
+        costRow.avgNumClicks = +avgNumClicks.toFixed(2);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -113,6 +133,13 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
+        let combinationObj = {
+          combination: min.combination,
+          level: startingValue,
+        };
+        let adjustedRate = await getAdjustedRate_18_20(combinationObj);
+        let floatedRate = parseFloat(adjustedRate[startingValue]);
+        let avgNumClicks = 1 / floatedRate;
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -129,6 +156,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         );
         protectionCount = parseInt(protectionCount);
         let costRow = {};
+        costRow.avgNumClicks = +avgNumClicks.toFixed(2);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -140,6 +168,13 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
+        let combinationObj = {
+          combination: min.combination,
+          level: startingValue,
+        };
+        let adjustedRate = await getAdjustedRate_18_20(combinationObj);
+        let floatedRate = parseFloat(adjustedRate[startingValue]);
+        let avgNumClicks = 1 / floatedRate;
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -156,6 +191,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         );
         protectionCount = parseInt(protectionCount);
         let costRow = {};
+        costRow.avgNumClicks = +avgNumClicks.toFixed(2);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -167,6 +203,13 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
+        let combinationObj = {
+          combination: min.combination,
+          level: startingValue,
+        };
+        let adjustedRate = await getAdjustedRate_18_20(combinationObj);
+        let floatedRate = parseFloat(adjustedRate[startingValue]);
+        let avgNumClicks = 1 / floatedRate;
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -183,6 +226,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         );
         protectionCount = parseInt(protectionCount);
         let costRow = {};
+        costRow.avgNumClicks = +avgNumClicks.toFixed(2);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
