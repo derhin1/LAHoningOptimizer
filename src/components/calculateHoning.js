@@ -8,6 +8,8 @@ import {
   getAdjustedRate_7_11,
   getAdjustedRate_12_17,
   getAdjustedRate_18_20,
+  getSingleArmorMaterialCost,
+  getSingleWeaponMaterialCost,
 } from "../axios-services";
 
 async function calculateHoning(alignment, startingValue, endValue) {
@@ -29,6 +31,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let adjustedRate = await getAdjustedRate_7_11(combinationObj);
         let floatedRate = parseFloat(adjustedRate[startingValue]);
         let avgNumClicks = 1 / floatedRate;
+        let materialCosts = await getSingleArmorMaterialCost(combinationObj);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -46,6 +49,14 @@ async function calculateHoning(alignment, startingValue, endValue) {
         protectionCount = parseInt(protectionCount);
         let costRow = {};
         costRow.avgNumClicks = +avgNumClicks.toFixed(2);
+        costRow.basicFusion = Math.ceil(
+          costRow.avgNumClicks * materialCosts.basic_fusion
+        );
+        costRow.guardianStone = Math.ceil(
+          costRow.avgNumClicks * materialCosts.guardian_stone
+        );
+        costRow.destructionStone = 0;
+        costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -64,6 +75,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let adjustedRate = await getAdjustedRate_12_17(combinationObj);
         let floatedRate = parseFloat(adjustedRate[startingValue]);
         let avgNumClicks = 1 / floatedRate;
+        let materialCosts = await getSingleArmorMaterialCost(combinationObj);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -81,6 +93,14 @@ async function calculateHoning(alignment, startingValue, endValue) {
         protectionCount = parseInt(protectionCount);
         let costRow = {};
         costRow.avgNumClicks = +avgNumClicks.toFixed(2);
+        costRow.basicFusion = Math.ceil(
+          costRow.avgNumClicks * materialCosts.basic_fusion
+        );
+        costRow.guardianStone = Math.ceil(
+          costRow.avgNumClicks * materialCosts.guardian_stone
+        );
+        costRow.destructionStone = 0;
+        costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -99,6 +119,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let adjustedRate = await getAdjustedRate_18_20(combinationObj);
         let floatedRate = parseFloat(adjustedRate[startingValue]);
         let avgNumClicks = 1 / floatedRate;
+        let materialCosts = await getSingleArmorMaterialCost(combinationObj);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -116,6 +137,14 @@ async function calculateHoning(alignment, startingValue, endValue) {
         protectionCount = parseInt(protectionCount);
         let costRow = {};
         costRow.avgNumClicks = +avgNumClicks.toFixed(2);
+        costRow.basicFusion = Math.ceil(
+          costRow.avgNumClicks * materialCosts.basic_fusion
+        );
+        costRow.guardianStone = Math.ceil(
+          costRow.avgNumClicks * materialCosts.guardian_stone
+        );
+        costRow.destructionStone = 0;
+        costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -137,9 +166,10 @@ async function calculateHoning(alignment, startingValue, endValue) {
           combination: min.combination,
           level: startingValue,
         };
-        let adjustedRate = await getAdjustedRate_18_20(combinationObj);
+        let adjustedRate = await getAdjustedRate_7_11(combinationObj);
         let floatedRate = parseFloat(adjustedRate[startingValue]);
         let avgNumClicks = 1 / floatedRate;
+        let materialCosts = await getSingleWeaponMaterialCost(combinationObj);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -157,6 +187,14 @@ async function calculateHoning(alignment, startingValue, endValue) {
         protectionCount = parseInt(protectionCount);
         let costRow = {};
         costRow.avgNumClicks = +avgNumClicks.toFixed(2);
+        costRow.basicFusion = Math.ceil(
+          costRow.avgNumClicks * materialCosts.basic_fusion
+        );
+        costRow.destructionStone = Math.ceil(
+          costRow.avgNumClicks * materialCosts.destruction_stone
+        );
+        costRow.guardianStone = 0;
+        costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -172,9 +210,10 @@ async function calculateHoning(alignment, startingValue, endValue) {
           combination: min.combination,
           level: startingValue,
         };
-        let adjustedRate = await getAdjustedRate_18_20(combinationObj);
+        let adjustedRate = await getAdjustedRate_12_17(combinationObj);
         let floatedRate = parseFloat(adjustedRate[startingValue]);
         let avgNumClicks = 1 / floatedRate;
+        let materialCosts = await getSingleWeaponMaterialCost(combinationObj);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -192,6 +231,14 @@ async function calculateHoning(alignment, startingValue, endValue) {
         protectionCount = parseInt(protectionCount);
         let costRow = {};
         costRow.avgNumClicks = +avgNumClicks.toFixed(2);
+        costRow.basicFusion = Math.ceil(
+          costRow.avgNumClicks * materialCosts.basic_fusion
+        );
+        costRow.destructionStone = Math.ceil(
+          costRow.avgNumClicks * materialCosts.destruction_stone
+        );
+        costRow.guardianStone = 0;
+        costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -210,6 +257,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let adjustedRate = await getAdjustedRate_18_20(combinationObj);
         let floatedRate = parseFloat(adjustedRate[startingValue]);
         let avgNumClicks = 1 / floatedRate;
+        let materialCosts = await getSingleWeaponMaterialCost(combinationObj);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -227,6 +275,14 @@ async function calculateHoning(alignment, startingValue, endValue) {
         protectionCount = parseInt(protectionCount);
         let costRow = {};
         costRow.avgNumClicks = +avgNumClicks.toFixed(2);
+        costRow.basicFusion = Math.ceil(
+          costRow.avgNumClicks * materialCosts.basic_fusion
+        );
+        costRow.destructionStone = Math.ceil(
+          costRow.avgNumClicks * materialCosts.destruction_stone
+        );
+        costRow.guardianStone = 0;
+        costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;

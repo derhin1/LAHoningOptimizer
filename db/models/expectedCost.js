@@ -421,7 +421,6 @@ async function getMinimumAdjustedRate_7_11({ level, combination }) {
     `,
       [combination]
     );
-    console.log(singleRate);
     return singleRate;
   } catch (error) {
     console.error("Problem getting minimum adjusted rate");
@@ -439,7 +438,6 @@ async function getMinimumAdjustedRate_12_17({ level, combination }) {
     `,
       [combination]
     );
-    console.log(singleRate);
     return singleRate;
   } catch (error) {
     console.error("Problem getting minimum adjusted rate");
@@ -457,10 +455,43 @@ async function getMinimumAdjustedRate_18_20({ level, combination }) {
     `,
       [combination]
     );
-    console.log(singleRate);
     return singleRate;
   } catch (error) {
     console.error("Problem getting minimum adjusted rate");
+  }
+}
+
+async function getSingleMaterialCostArmor({ level }) {
+  try {
+    const {
+      rows: [singleCost],
+    } = await client.query(
+      `
+    SELECT * FROM material_costs_armor
+    WHERE honing_level = $1
+    `,
+      [level]
+    );
+    return singleCost;
+  } catch (error) {
+    console.error("Problem getting specific material cost 7-11");
+  }
+}
+
+async function getSingleMaterialCostWeapon({ level }) {
+  try {
+    const {
+      rows: [singleCost],
+    } = await client.query(
+      `
+    SELECT * FROM material_costs_weapon
+    WHERE honing_level = $1
+    `,
+      [level]
+    );
+    return singleCost;
+  } catch (error) {
+    console.error("Problem getting specific material cost 7-11");
   }
 }
 
@@ -490,4 +521,6 @@ module.exports = {
   getMinimumAdjustedRate_7_11,
   getMinimumAdjustedRate_18_20,
   getMinimumAdjustedRate_12_17,
+  getSingleMaterialCostArmor,
+  getSingleMaterialCostWeapon,
 };

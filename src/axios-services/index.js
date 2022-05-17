@@ -186,3 +186,27 @@ export async function getAdjustedRate_18_20(combination) {
     console.error(error);
   }
 }
+
+export async function getSingleArmorMaterialCost(level) {
+  try {
+    const { data } = await axios.post(
+      "/api/expectedCosts/material/armor",
+      level
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getSingleWeaponMaterialCost(level) {
+  try {
+    const { data } = await axios.post(
+      "/api/expectedCosts/material/weapon",
+      level
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
