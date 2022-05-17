@@ -150,3 +150,15 @@ export async function getMarketPrices() {
     console.error(error);
   }
 }
+
+export async function getAdjustedRate_7_11(combination) {
+  try {
+    const { data } = await axios.post(
+      "/api/expectedCosts/rates/7-11",
+      combination
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

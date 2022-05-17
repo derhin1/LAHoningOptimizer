@@ -5,6 +5,7 @@ import {
   getExpectedWeaponCost_7_11,
   getExpectedWeaponCost_12_17,
   getExpectedWeaponCost_18_20,
+  getAdjustedRate_7_11,
 } from "../axios-services";
 async function calculateHoning(alignment, startingValue, endValue) {
   let lowestCostArr = [];
@@ -15,10 +16,15 @@ async function calculateHoning(alignment, startingValue, endValue) {
       startingValue++;
       if (startingValue <= 11) {
         let costs = await getExpectedArmorCost_7_11(startingValue);
-        console.log(costs, "calculateHoning");
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
+        let combinationObj = {
+          combination: min.combination,
+          level: startingValue,
+        };
+        let adjustedRate = await getAdjustedRate_7_11(combinationObj);
+        let floatedRate = parseFloat(adjustedRate[startingValue]);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -35,6 +41,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         );
         protectionCount = parseInt(protectionCount);
         let costRow = {};
+        costRow.avgNumClicks = 1 / floatedRate;
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;

@@ -513,4 +513,14 @@ expectedCostsRouter.get("/market", async (req, res, next) => {
   }
 });
 
+expectedCostsRouter.post("/rates/7-11", async (req, res, next) => {
+  try {
+    console.log(req.body);
+    let successRate = await Cost.getMinimumAdjustedRate_7_11(req.body);
+    res.send(successRate);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = expectedCostsRouter;

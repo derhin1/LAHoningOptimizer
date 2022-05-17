@@ -410,6 +410,24 @@ async function getMarketPrices() {
   }
 }
 
+async function getMinimumAdjustedRate_7_11({ level, combination }) {
+  try {
+    const {
+      rows: [singleRate],
+    } = await client.query(
+      `
+    SELECT "${level}" FROM adjusted_rates_7_11
+    WHERE combination = $1
+    `,
+      [combination]
+    );
+    console.log(singleRate);
+    return singleRate;
+  } catch (error) {
+    console.error("Problem getting minimum adjusted rate");
+  }
+}
+
 module.exports = {
   addExpectedCost_weapon_7_11,
   getSuccessRates_7_11,
@@ -433,4 +451,5 @@ module.exports = {
   updateMarketPrices,
   addInitialMarketPrice,
   getMarketPrices,
+  getMinimumAdjustedRate_7_11,
 };
