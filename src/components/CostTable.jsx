@@ -12,6 +12,7 @@ import {
   TableRow,
   Typography,
   Paper,
+  Button,
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -24,7 +25,7 @@ import basicFusion from "../images/basicFusion.png";
 import solarGrace from "../images/solarGrace.png";
 import solarProtection from "../images/solarProtection.png";
 
-const CostTable = ({ costArr }) => {
+const CostTable = ({ costArr, setCostArr }) => {
   const [graceTotal, setGraceTotal] = useState(0);
   const [blessingTotal, setBlessingTotal] = useState(0);
   const [protectionTotal, setProtectionTotal] = useState(0);
@@ -33,6 +34,14 @@ const CostTable = ({ costArr }) => {
   const [guardianTotal, setGuardianTotal] = useState(0);
   const [ghlTotal, setghlTotal] = useState(0);
   const [basicFusionTotal, setBasicFusionTotal] = useState(0);
+
+  function handleDelete(e) {
+    let idx = e.target.id;
+    let filtered = costArr.filter((row, i) => {
+      return i != idx;
+    });
+    setCostArr(filtered);
+  }
 
   function calculateTotals() {
     let graceAmount = 0;
@@ -154,6 +163,7 @@ const CostTable = ({ costArr }) => {
                   alt={`solar protection`}
                 />
               </TableCell>
+              <TableCell align="center">Remove Row</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Total</TableCell>
@@ -167,6 +177,7 @@ const CostTable = ({ costArr }) => {
               <TableCell align="right">{blessingTotal}</TableCell>
               <TableCell align="right">{protectionTotal}</TableCell>
               <TableCell align="right">{goldTotal}</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -177,7 +188,7 @@ const CostTable = ({ costArr }) => {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {`to +${row.toLevel}`}
+                    {`${row.alignment} to +${row.toLevel}`}
                   </TableCell>
                   <TableCell align="right">
                     {row.graceCount}
@@ -220,6 +231,11 @@ const CostTable = ({ costArr }) => {
                     {Math.ceil(row.protectionCount * row.avgNumClicks)}
                   </TableCell>
                   <TableCell align="right">{row.minCost}</TableCell>
+                  <TableCell>
+                    <Button id={i} onClick={handleDelete} variant="contained">
+                      Remove
+                    </Button>
+                  </TableCell>
                 </TableRow>
               );
             })}

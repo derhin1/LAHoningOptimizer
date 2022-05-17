@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 
 const UpgradeInputs = () => {
   const { startingValue, setStartingValue, endValue, setEndValue } = useAuth();
-  const [alignment, setAlignment] = useState("armor");
+  const [alignment, setAlignment] = useState("Armor");
   const [costArr, setCostArr] = useState([]);
 
   const handleStartingInput = (event) => {
@@ -30,6 +30,10 @@ const UpgradeInputs = () => {
     setAlignment(newAlignment);
   };
 
+  function handleReset() {
+    setCostArr([]);
+  }
+
   async function handleCalculate() {
     if (startingValue === endValue) {
       toast.error("Start and End Inputs must be different");
@@ -42,7 +46,7 @@ const UpgradeInputs = () => {
         endValue
       );
       console.log(cheapestCosts);
-      setCostArr(cheapestCosts);
+      setCostArr([...costArr, ...cheapestCosts]);
     }
   }
 
@@ -55,8 +59,8 @@ const UpgradeInputs = () => {
         exclusive
         onChange={handleChange}
       >
-        <ToggleButton value="armor">Armor</ToggleButton>
-        <ToggleButton value="weapon">Weapon</ToggleButton>
+        <ToggleButton value="Armor">Armor</ToggleButton>
+        <ToggleButton value="Weapon">Weapon</ToggleButton>
       </ToggleButtonGroup>
       <Box className="honing-input">
         <FormControl fullWidth>
@@ -115,8 +119,13 @@ const UpgradeInputs = () => {
       <Button onClick={handleCalculate} variant="contained">
         Calculate
       </Button>
+      <Button onClick={handleReset} variant="contained">
+        Reset
+      </Button>
       {costArr.length > 0 ? (
-        <div className="cost-table">{<CostTable costArr={costArr} />}</div>
+        <div className="cost-table">
+          {<CostTable costArr={costArr} setCostArr={setCostArr} />}
+        </div>
       ) : null}
     </div>
   );
