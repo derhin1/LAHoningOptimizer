@@ -15,10 +15,10 @@ async function calculateHoning(alignment, startingValue, endValue) {
       startingValue++;
       if (startingValue <= 11) {
         let costs = await getExpectedArmorCost_7_11(startingValue);
+        console.log(costs, "calculateHoning");
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
-        console.log(min);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -46,7 +46,6 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
-        console.log(min);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -74,7 +73,6 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
-        console.log(min);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -99,7 +97,6 @@ async function calculateHoning(alignment, startingValue, endValue) {
         lowestCostArr.push(costRow);
       }
     }
-    console.log(lowestCostArr);
     return lowestCostArr;
   } else {
     for (let i = 0; i < end - start; i++) {
@@ -109,7 +106,6 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
-        console.log(min);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -137,7 +133,6 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
-        console.log(min);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -165,7 +160,6 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let min = costs.reduce((prev, curr) => {
           return prev[startingValue] < curr[startingValue] ? prev : curr;
         });
-        console.log(min);
         let graceCount = min.combination.substring(
           2,
           min.combination.indexOf("B")
@@ -190,7 +184,6 @@ async function calculateHoning(alignment, startingValue, endValue) {
         lowestCostArr.push(costRow);
       }
     }
-    console.log(lowestCostArr);
     return lowestCostArr;
   }
 }

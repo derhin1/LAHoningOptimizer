@@ -41,6 +41,7 @@ const UpgradeInputs = () => {
         startingValue,
         endValue
       );
+      console.log(cheapestCosts);
       setCostArr(cheapestCosts);
     }
   }

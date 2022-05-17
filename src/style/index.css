@@ -39,3 +39,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.table-combination-image{
+  position: relative;
+  top: 10px;
+}
+

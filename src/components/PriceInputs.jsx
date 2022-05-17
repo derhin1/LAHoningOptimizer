@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Backdrop, CircularProgress } from "@mui/material";
 import {
   updateExpectedCost_7_11,
   updateExpectedCost_12_17,
@@ -7,7 +7,6 @@ import {
   updateMarketPrices,
   getMarketPrices,
 } from "../axios-services";
-import { Backdrop, CircularProgress } from "@mui/material";
 const PriceInputs = () => {
   const [guardianPrice, setGuardianPrice] = useState(0);
   const [destructionPrice, setDestructionPrice] = useState(0);
@@ -43,7 +42,6 @@ const PriceInputs = () => {
     try {
       async function loadMarketPrices() {
         let marketPrices = await getMarketPrices();
-        console.log(marketPrices);
         if (marketPrices.length) {
           setGuardianPrice(marketPrices[0].guardianStone);
           setDestructionPrice(marketPrices[0].destructionStone);
@@ -53,7 +51,6 @@ const PriceInputs = () => {
           setSolarBlessingPrice(marketPrices[0].solarBlessing);
           setSolarProtectionPrice(marketPrices[0].solarProtection);
           let date = new Date(marketPrices[0].lastUpdated);
-          console.log(date.toLocaleString());
           setLastUpdated(date.toLocaleString());
         }
         return marketPrices;
