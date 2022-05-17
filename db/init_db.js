@@ -20,6 +20,7 @@ async function buildTables() {
     DROP TABLE IF EXISTS expected_costs_armor_18_20;
     DROP TABLE IF EXISTS material_costs_weapon;
     DROP TABLE IF EXISTS material_costs_armor;
+    DROP TABLE IF EXISTS current_market_prices;
 
 
     CREATE TABLE adjusted_rates_7_11(
@@ -119,6 +120,19 @@ async function buildTables() {
         silver INTEGER,
         gold INTEGER
       );
+
+       CREATE TABLE current_market_prices(
+         id SERIAL PRIMARY KEY,
+        "guardianStone" DECIMAL(2,1),
+        "destructionStone" DECIMAL(2,1),
+        "honorShard" INTEGER,
+        ghl INTEGER,
+        "basicFusion" INTEGER,
+        "solarGrace" INTEGER,
+        "solarBlessing" INTEGER,
+        "solarProtection" INTEGER,
+        "lastUpdated" TIMESTAMP WITH TIME ZONE
+      );
     `);
     console.log("... Tables successfully created!");
   } catch (error) {
@@ -128,7 +142,18 @@ async function buildTables() {
 
 async function populateInitialData() {
   try {
+    let initialPrices = {
+      guardianStone: 1,
+      destructionStone: 1,
+      honorShard: 1,
+      ghl: 1,
+      basicFusion: 1,
+      solarGrace: 1,
+      solarBlessing: 1,
+      solarProtection: 1,
+    };
     console.log("Starting to seed Data...");
+    await Cost.addInitialMarketPrice(initialPrices);
     await Promise.all(weapon_mats.map(Cost.addWeaponMaterialCostRow));
     await Promise.all(armor_mats.map(Cost.addArmorMaterialCostRow));
     await Hone.seed();

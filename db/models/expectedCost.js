@@ -342,6 +342,74 @@ async function getExpectedWeaponCost_18_20(num) {
   }
 }
 
+async function addInitialMarketPrice({
+  guardianStone,
+  destructionStone,
+  honorShard,
+  ghl,
+  basicFusion,
+  solarGrace,
+  solarBlessing,
+  solarProtection,
+}) {
+  try {
+    const { rows } = await client.query(
+      `
+   INSERT INTO current_market_prices("guardianStone","destructionStone", "honorShard", ghl, "basicFusion", "solarGrace", "solarBlessing", "solarProtection")
+   VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+   RETURNING *
+   `,
+      [
+        guardianStone,
+        destructionStone,
+        honorShard,
+        ghl,
+        basicFusion,
+        solarGrace,
+        solarBlessing,
+        solarProtection,
+      ]
+    );
+    return rows;
+  } catch (error) {
+    console.error("Problem adding initial market price");
+  }
+}
+
+async function updateMarketPrices(fields = {}) {
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const { rows } = await client.query(
+      `
+    UPDATE current_market_prices
+    SET ${setString}
+    WHERE id=1
+    RETURNING *;
+    `,
+      [...Object.values(fields)]
+    );
+    return rows;
+  } catch (error) {
+    console.error("Problem updating market prices", error);
+  }
+}
+
+async function getMarketPrices() {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM current_market_prices
+    `);
+    return rows;
+  } catch (error) {
+    console.error("Problem getting market prices");
+  }
+}
+
 module.exports = {
   addExpectedCost_weapon_7_11,
   getSuccessRates_7_11,
@@ -362,4 +430,7 @@ module.exports = {
   getExpectedWeaponCost_7_11,
   getExpectedWeaponCost_12_17,
   getExpectedWeaponCost_18_20,
+  updateMarketPrices,
+  addInitialMarketPrice,
+  getMarketPrices,
 };
