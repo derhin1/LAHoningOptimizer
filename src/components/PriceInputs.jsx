@@ -42,13 +42,17 @@ const PriceInputs = () => {
       solarBlessingPrice,
       solarProtectionPrice,
     ];
-    setLoading(true);
-    updateMarketPrices(priceArr);
-    await updateExpectedCost_7_11(priceArr);
-    await updateExpectedCost_12_17(priceArr);
-    let response = await updateExpectedCost_18_20(priceArr);
-    if (response.message === "Successfully updated market for 18-20") {
-      setLoading(false);
+    try {
+      setLoading(true);
+      updateMarketPrices(priceArr);
+      await updateExpectedCost_7_11(priceArr);
+      await updateExpectedCost_12_17(priceArr);
+      let response = await updateExpectedCost_18_20(priceArr);
+      if (response.message === "Successfully updated market for 18-20") {
+        setLoading(false);
+      }
+    } catch (error) {
+      throw error;
     }
   }
 
@@ -94,6 +98,7 @@ const PriceInputs = () => {
           label="1 Guardian Stone"
           variant="outlined"
           value={guardianPrice}
+          inputProps={{ maxLength: 4 }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -107,15 +112,20 @@ const PriceInputs = () => {
             ),
           }}
           onChange={(e) => {
-            setGuardianPrice(e.target.value);
+            const re = /^[0-9]*\.?[0-9]*$/;
+            if (e.target.value === "" || re.test(e.target.value)) {
+              setGuardianPrice(e.target.value);
+            }
           }}
         />
 
         <TextField
           id="outlined-basic"
+          type="text"
           label="1 Destruction Stone"
           variant="outlined"
           value={destructionPrice}
+          inputProps={{ maxLength: 4 }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -129,7 +139,10 @@ const PriceInputs = () => {
             ),
           }}
           onChange={(e) => {
-            setDestructionPrice(e.target.value);
+            const re = /^[0-9]*\.?[0-9]*$/;
+            if (e.target.value === "" || re.test(e.target.value)) {
+              setDestructionPrice(e.target.value);
+            }
           }}
         />
         <TextField
@@ -137,6 +150,7 @@ const PriceInputs = () => {
           label="Great Honor Leapstone"
           variant="outlined"
           value={GHLPrice}
+          inputProps={{ maxLength: 3 }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -150,7 +164,10 @@ const PriceInputs = () => {
             ),
           }}
           onChange={(e) => {
-            setGHLPrice(e.target.value);
+            const re = /^[0-9]*\.?[0-9]*$/;
+            if (e.target.value === "" || re.test(e.target.value)) {
+              setGHLPrice(e.target.value);
+            }
           }}
         />
         <TextField
@@ -159,8 +176,12 @@ const PriceInputs = () => {
           variant="outlined"
           value={basicFusionPrice}
           onChange={(e) => {
-            setBasicFusionPrice(e.target.value);
+            const re = /^[0-9]*\.?[0-9]*$/;
+            if (e.target.value === "" || re.test(e.target.value)) {
+              setBasicFusionPrice(e.target.value);
+            }
           }}
+          inputProps={{ maxLength: 2 }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -179,6 +200,7 @@ const PriceInputs = () => {
           label="Solar Grace"
           variant="outlined"
           value={solarGracePrice}
+          inputProps={{ maxLength: 3 }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -192,7 +214,10 @@ const PriceInputs = () => {
             ),
           }}
           onChange={(e) => {
-            setSolarGracePrice(e.target.value);
+            const re = /^[0-9]*\.?[0-9]*$/;
+            if (e.target.value === "" || re.test(e.target.value)) {
+              setSolarGracePrice(e.target.value);
+            }
           }}
         />
         <TextField
@@ -200,6 +225,7 @@ const PriceInputs = () => {
           label="Solar Blessing"
           variant="outlined"
           value={solarBlessingPrice}
+          inputProps={{ maxLength: 3 }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -213,7 +239,10 @@ const PriceInputs = () => {
             ),
           }}
           onChange={(e) => {
-            setSolarBlessingPrice(e.target.value);
+            const re = /^[0-9]*\.?[0-9]*$/;
+            if (e.target.value === "" || re.test(e.target.value)) {
+              setSolarBlessingPrice(e.target.value);
+            }
           }}
         />
         <TextField
@@ -222,8 +251,12 @@ const PriceInputs = () => {
           variant="outlined"
           value={solarProtectionPrice}
           onChange={(e) => {
-            setSolarProtectionPrice(e.target.value);
+            const re = /^[0-9]*\.?[0-9]*$/;
+            if (e.target.value === "" || re.test(e.target.value)) {
+              setSolarProtectionPrice(e.target.value);
+            }
           }}
+          inputProps={{ maxLength: 3 }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">

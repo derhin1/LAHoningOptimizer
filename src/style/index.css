@@ -43,5 +43,26 @@ body {
 .table-combination-image{
   position: relative;
   top: 10px;
+  
 }
 
+.table-combination-image-gold {
+  position: relative;
+  bottom: 10px;
+  left: 35px;
+}
+
+.table-combination-header-image{
+  position: relative;
+  left: 10px;
+}
+
+.table-combination-header-image-destruction {
+  position: relative;
+  left: 10px;
+}
+
+.table-combination-header-image-guardian {
+  position: relative;
+ 
+}

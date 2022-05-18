@@ -83,7 +83,7 @@ const CostTable = ({ costArr, setCostArr }) => {
           <TableHead>
             <TableRow>
               <TableCell align="center" colSpan={2}></TableCell>
-              <TableCell align="center" colSpan={10}>
+              <TableCell align="center" colSpan={11}>
                 Expected Material Costs
               </TableCell>
             </TableRow>
@@ -93,7 +93,7 @@ const CostTable = ({ costArr, setCostArr }) => {
               <TableCell align="right">Avg # of Attempts</TableCell>
               <TableCell align="right">
                 <img
-                  className="table-combination-image"
+                  className="table-combination-header-image-guardian"
                   src={guardianStone}
                   width={"35px"}
                   height={"35px"}
@@ -102,7 +102,7 @@ const CostTable = ({ costArr, setCostArr }) => {
               </TableCell>
               <TableCell align="right">
                 <img
-                  className="table-combination-image"
+                  className="table-combination-header-image-destruction"
                   src={destructionStone}
                   width={"35px"}
                   height={"35px"}
@@ -111,7 +111,7 @@ const CostTable = ({ costArr, setCostArr }) => {
               </TableCell>
               <TableCell align="right">
                 <img
-                  className="table-combination-image"
+                  className="table-combination-header-image"
                   src={greatHonorLeapstone}
                   width={"40px"}
                   height={"40px"}
@@ -120,7 +120,7 @@ const CostTable = ({ costArr, setCostArr }) => {
               </TableCell>
               <TableCell align="right">
                 <img
-                  className="table-combination-image"
+                  className="table-combination-header-image"
                   src={basicFusion}
                   width={"50px"}
                   height={"50px"}
@@ -129,7 +129,7 @@ const CostTable = ({ costArr, setCostArr }) => {
               </TableCell>
               <TableCell align="right">
                 <img
-                  className="table-combination-image"
+                  className="table-combination-header-image"
                   src={solarGrace}
                   width={"40px"}
                   height={"40px"}
@@ -138,7 +138,7 @@ const CostTable = ({ costArr, setCostArr }) => {
               </TableCell>
               <TableCell align="right">
                 <img
-                  className="table-combination-image"
+                  className="table-combination-header-image"
                   src={solarBlessing}
                   width={"40px"}
                   height={"40px"}
@@ -147,7 +147,7 @@ const CostTable = ({ costArr, setCostArr }) => {
               </TableCell>
               <TableCell align="right">
                 <img
-                  className="table-combination-image"
+                  className="table-combination-header-image"
                   src={solarProtection}
                   width={"40px"}
                   height={"40px"}
@@ -156,12 +156,23 @@ const CostTable = ({ costArr, setCostArr }) => {
               </TableCell>
               <TableCell align="right">
                 <img
-                  className="table-combination-image"
+                  className="table-combination-image-gold"
                   src={gold}
                   width={"40px"}
                   height={"40px"}
-                  alt={`solar protection`}
+                  alt={`gold`}
                 />
+                Tap
+              </TableCell>
+              <TableCell align="right">
+                <img
+                  className="table-combination-image-gold"
+                  src={gold}
+                  width={"40px"}
+                  height={"40px"}
+                  alt={`gold`}
+                />
+                Total
               </TableCell>
               <TableCell align="center">Remove Row</TableCell>
             </TableRow>
@@ -176,6 +187,7 @@ const CostTable = ({ costArr, setCostArr }) => {
               <TableCell align="right">{graceTotal}</TableCell>
               <TableCell align="right">{blessingTotal}</TableCell>
               <TableCell align="right">{protectionTotal}</TableCell>
+              <TableCell align="right"></TableCell>
               <TableCell align="right">{goldTotal}</TableCell>
               <TableCell></TableCell>
             </TableRow>
@@ -229,6 +241,9 @@ const CostTable = ({ costArr, setCostArr }) => {
                   </TableCell>
                   <TableCell align="right">
                     {Math.ceil(row.protectionCount * row.avgNumClicks)}
+                  </TableCell>
+                  <TableCell align="right">
+                    {Math.ceil(row.minCost / row.avgNumClicks)}
                   </TableCell>
                   <TableCell align="right">{row.minCost}</TableCell>
                   <TableCell>
