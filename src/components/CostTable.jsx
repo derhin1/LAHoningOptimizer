@@ -24,6 +24,7 @@ import solarBlessing from "../images/solarBlessing.png";
 import basicFusion from "../images/basicFusion.png";
 import solarGrace from "../images/solarGrace.png";
 import solarProtection from "../images/solarProtection.png";
+import useAuth from "../hooks/useAuth.js";
 
 const CostTable = ({ costArr, setCostArr }) => {
   const [graceTotal, setGraceTotal] = useState(0);
@@ -34,7 +35,7 @@ const CostTable = ({ costArr, setCostArr }) => {
   const [guardianTotal, setGuardianTotal] = useState(0);
   const [ghlTotal, setghlTotal] = useState(0);
   const [basicFusionTotal, setBasicFusionTotal] = useState(0);
-
+  const { pieceCount } = useAuth();
   function handleDelete(e) {
     let idx = e.target.id;
     let filtered = costArr.filter((row, i) => {
@@ -200,7 +201,7 @@ const CostTable = ({ costArr, setCostArr }) => {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {`${row.alignment} to +${row.toLevel}`}
+                    {`${row.alignment} +${row.toLevel} x${row.pieceCount}`}
                   </TableCell>
                   <TableCell align="right">
                     {row.graceCount}
@@ -234,18 +235,26 @@ const CostTable = ({ costArr, setCostArr }) => {
                   <TableCell align="right">{row.ghl}</TableCell>
                   <TableCell align="right">{row.basicFusion}</TableCell>
                   <TableCell align="right">
-                    {Math.ceil(row.graceCount * row.avgNumClicks)}
+                    {Math.ceil(
+                      row.graceCount * row.avgNumClicks * row.pieceCount
+                    )}
                   </TableCell>
                   <TableCell align="right">
-                    {Math.ceil(row.blessingCount * row.avgNumClicks)}
+                    {Math.ceil(
+                      row.blessingCount * row.avgNumClicks * row.pieceCount
+                    )}
                   </TableCell>
                   <TableCell align="right">
-                    {Math.ceil(row.protectionCount * row.avgNumClicks)}
+                    {Math.ceil(
+                      row.protectionCount * row.avgNumClicks * row.pieceCount
+                    )}
                   </TableCell>
                   <TableCell align="right">
                     {Math.ceil(row.minCost / row.avgNumClicks)}
                   </TableCell>
-                  <TableCell align="right">{row.minCost}</TableCell>
+                  <TableCell align="right">
+                    {row.minCost * row.pieceCount}
+                  </TableCell>
                   <TableCell>
                     <Button id={i} onClick={handleDelete} variant="contained">
                       Remove

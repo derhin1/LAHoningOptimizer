@@ -12,7 +12,7 @@ import {
   getSingleWeaponMaterialCost,
 } from "../axios-services";
 
-async function calculateHoning(alignment, startingValue, endValue) {
+async function calculateHoning(alignment, startingValue, endValue, pieceCount) {
   let lowestCostArr = [];
   let start = startingValue;
   let end = endValue;
@@ -50,13 +50,16 @@ async function calculateHoning(alignment, startingValue, endValue) {
         let costRow = {};
         costRow.avgNumClicks = +avgNumClicks.toFixed(2);
         costRow.basicFusion = Math.ceil(
-          costRow.avgNumClicks * materialCosts.basic_fusion
+          costRow.avgNumClicks * materialCosts.basic_fusion * pieceCount
         );
         costRow.guardianStone = Math.ceil(
-          costRow.avgNumClicks * materialCosts.guardian_stone
+          costRow.avgNumClicks * materialCosts.guardian_stone * pieceCount
         );
+        costRow.pieceCount = pieceCount;
         costRow.destructionStone = 0;
-        costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
+        costRow.ghl = Math.ceil(
+          costRow.avgNumClicks * materialCosts.ghl * pieceCount
+        );
         costRow.toLevel = startingValue;
         costRow.graceCount = graceCount;
         costRow.blessingCount = blessingCount;
@@ -100,6 +103,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.guardianStone = Math.ceil(
           costRow.avgNumClicks * materialCosts.guardian_stone
         );
+        costRow.pieceCount = pieceCount;
         costRow.destructionStone = 0;
         costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;
@@ -145,6 +149,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.guardianStone = Math.ceil(
           costRow.avgNumClicks * materialCosts.guardian_stone
         );
+        costRow.pieceCount = pieceCount;
         costRow.destructionStone = 0;
         costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;
@@ -196,6 +201,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.destructionStone = Math.ceil(
           costRow.avgNumClicks * materialCosts.destruction_stone
         );
+        costRow.pieceCount = pieceCount;
         costRow.guardianStone = 0;
         costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;
@@ -241,6 +247,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.destructionStone = Math.ceil(
           costRow.avgNumClicks * materialCosts.destruction_stone
         );
+        costRow.pieceCount = pieceCount;
         costRow.guardianStone = 0;
         costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;
@@ -286,6 +293,7 @@ async function calculateHoning(alignment, startingValue, endValue) {
         costRow.destructionStone = Math.ceil(
           costRow.avgNumClicks * materialCosts.destruction_stone
         );
+        costRow.pieceCount = pieceCount;
         costRow.guardianStone = 0;
         costRow.ghl = Math.ceil(costRow.avgNumClicks * materialCosts.ghl);
         costRow.toLevel = startingValue;

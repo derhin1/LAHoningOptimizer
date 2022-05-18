@@ -14,7 +14,14 @@ import { calculateHoning, CostTable } from "./";
 import { toast } from "react-toastify";
 
 const UpgradeInputs = () => {
-  const { startingValue, setStartingValue, endValue, setEndValue } = useAuth();
+  const {
+    startingValue,
+    setStartingValue,
+    endValue,
+    setEndValue,
+    pieceCount,
+    setPieceCount,
+  } = useAuth();
   const [alignment, setAlignment] = useState("Armor");
   const [costArr, setCostArr] = useState([]);
 
@@ -26,7 +33,12 @@ const UpgradeInputs = () => {
     setEndValue(event.target.value);
   };
 
+  const handlePieceCountInput = (event) => {
+    setPieceCount(event.target.value);
+  };
+
   const handleChange = (event, newAlignment) => {
+    setPieceCount(1);
     setAlignment(newAlignment);
   };
 
@@ -43,7 +55,8 @@ const UpgradeInputs = () => {
       let cheapestCosts = await calculateHoning(
         alignment,
         startingValue,
-        endValue
+        endValue,
+        pieceCount
       );
       console.log(cheapestCosts);
       setCostArr([...costArr, ...cheapestCosts]);
@@ -114,6 +127,36 @@ const UpgradeInputs = () => {
             <MenuItem value={19}>19</MenuItem>
             <MenuItem value={20}>20</MenuItem>
           </Select>
+        </FormControl>
+      </Box>
+      <Box className="honing-input">
+        <FormControl fullWidth>
+          <InputLabel className="select-label">Number of Pieces</InputLabel>
+          {alignment === "Armor" ? (
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={pieceCount}
+              label="Number of Pieces"
+              onChange={handlePieceCountInput}
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+            </Select>
+          ) : (
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={pieceCount}
+              label="Number of Pieces"
+              onChange={handlePieceCountInput}
+            >
+              <MenuItem value={1}>1</MenuItem>
+            </Select>
+          )}
         </FormControl>
       </Box>
       <Button onClick={handleCalculate} variant="contained">
