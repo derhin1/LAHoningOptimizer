@@ -58,7 +58,6 @@ const UpgradeInputs = () => {
         endValue,
         pieceCount
       );
-      console.log(cheapestCosts);
       setCostArr([...costArr, ...cheapestCosts]);
     }
   }
