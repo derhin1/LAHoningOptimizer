@@ -54,14 +54,14 @@ const CostTable = ({ costArr, setCostArr }) => {
     let ghlAmount = 0;
     let basicFusionAmount = 0;
     for (let i = 0; i < costArr.length; i++) {
-      graceAmount += costArr[i].graceCount;
-      blessingAmount += costArr[i].blessingCount;
-      protectionAmount += costArr[i].protectionCount;
-      goldAmount += costArr[i].minCost;
-      destructionAmount += costArr[i].destructionStone;
-      guardianAmount += costArr[i].guardianStone;
-      ghlAmount += costArr[i].ghl;
-      basicFusionAmount += costArr[i].basicFusion;
+      graceAmount += costArr[i].graceCount * costArr[i].pieceCount;
+      blessingAmount += costArr[i].blessingCount * costArr[i].pieceCount;
+      protectionAmount += costArr[i].protectionCount * costArr[i].pieceCount;
+      goldAmount += costArr[i].minCost * costArr[i].pieceCount;
+      destructionAmount += costArr[i].destructionStone * costArr[i].pieceCount;
+      guardianAmount += costArr[i].guardianStone * costArr[i].pieceCount;
+      ghlAmount += costArr[i].ghl * costArr[i].pieceCount;
+      basicFusionAmount += costArr[i].basicFusion * costArr[i].pieceCount;
       setGraceTotal(graceAmount);
       setBlessingTotal(blessingAmount);
       setProtectionTotal(protectionAmount);
