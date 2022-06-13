@@ -4,12 +4,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  /* define variables here */
-  --green: green;
-  --red: red;
-  --blue: blue;
-}
 
 html {
   touch-action: manipulation;
@@ -20,14 +14,28 @@ body {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  background-color: white;
+  color: white;
+  background-image: url('../images/background.png');
 }
+
+/* .market-price{
+  display:flex;
+  flex-direction: column;
+  max-width: 12rem;
+}
+
+.market-price-button{
+max-width: auto;
+ height: auto;
+} */
 
 .honing-input {
   width: 120px;
 }
 
 .cost-table{
+  margin-left: 12rem;
+  /* padding-left: 5rem; */
   width: 80rem;
 }
 
@@ -35,7 +43,7 @@ body {
   font-size: 3rem;
 }
 
-.testing{
+.backDrop{
   display: flex;
   flex-direction: column;
 }
@@ -65,4 +73,8 @@ body {
 .table-combination-header-image-guardian {
   position: relative;
  
+}
+
+#outlined-basic{
+  color: white
 }
