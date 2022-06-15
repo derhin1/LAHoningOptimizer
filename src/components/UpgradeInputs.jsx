@@ -67,6 +67,8 @@ const UpgradeInputs = () => {
       <h2>Honing Inputs</h2>
       <ToggleButtonGroup
         color="primary"
+        size="large"
+        sx={{ bgcolor: "#BDC0C2" }}
         value={alignment}
         exclusive
         onChange={handleChange}
@@ -74,90 +76,128 @@ const UpgradeInputs = () => {
         <ToggleButton value="Armor">Armor</ToggleButton>
         <ToggleButton value="Weapon">Weapon</ToggleButton>
       </ToggleButtonGroup>
-      <Box className="honing-input">
-        <FormControl fullWidth>
-          <InputLabel className="select-label">From</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={startingValue}
-            label="From"
-            onChange={handleStartingInput}
-          >
-            <MenuItem value={6}>6</MenuItem>
-            <MenuItem value={7}>7</MenuItem>
-            <MenuItem value={8}>8</MenuItem>
-            <MenuItem value={9}>9</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={11}>11</MenuItem>
-            <MenuItem value={12}>12</MenuItem>
-            <MenuItem value={13}>13</MenuItem>
-            <MenuItem value={14}>14</MenuItem>
-            <MenuItem value={15}>15</MenuItem>
-            <MenuItem value={16}>16</MenuItem>
-            <MenuItem value={17}>17</MenuItem>
-            <MenuItem value={18}>18</MenuItem>
-            <MenuItem value={19}>19</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-      <Box className="honing-input">
-        <FormControl fullWidth>
-          <InputLabel className="select-label">To</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={endValue}
-            label="To"
-            onChange={handleEndInput}
-          >
-            <MenuItem value={7}>7</MenuItem>
-            <MenuItem value={8}>8</MenuItem>
-            <MenuItem value={9}>9</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={11}>11</MenuItem>
-            <MenuItem value={12}>12</MenuItem>
-            <MenuItem value={13}>13</MenuItem>
-            <MenuItem value={14}>14</MenuItem>
-            <MenuItem value={15}>15</MenuItem>
-            <MenuItem value={16}>16</MenuItem>
-            <MenuItem value={17}>17</MenuItem>
-            <MenuItem value={18}>18</MenuItem>
-            <MenuItem value={19}>19</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-      <Box className="honing-input">
-        <FormControl fullWidth>
-          <InputLabel className="select-label">Number of Pieces</InputLabel>
-          {alignment === "Armor" ? (
+      <br></br>
+      <br></br>
+      <br></br>
+      <div className="testing123123">
+        <Box className="honing-input">
+          <FormControl fullWidth>
+            <InputLabel
+              className="select-label"
+              sx={{
+                color: "white",
+              }}
+            >
+              From
+            </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={pieceCount}
-              label="Number of Pieces"
-              onChange={handlePieceCountInput}
+              sx={{
+                color: "white",
+              }}
+              value={startingValue}
+              label="From"
+              onChange={handleStartingInput}
             >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={11}>11</MenuItem>
+              <MenuItem value={12}>12</MenuItem>
+              <MenuItem value={13}>13</MenuItem>
+              <MenuItem value={14}>14</MenuItem>
+              <MenuItem value={15}>15</MenuItem>
+              <MenuItem value={16}>16</MenuItem>
+              <MenuItem value={17}>17</MenuItem>
+              <MenuItem value={18}>18</MenuItem>
+              <MenuItem value={19}>19</MenuItem>
             </Select>
-          ) : (
+          </FormControl>
+        </Box>
+        <Box className="honing-input">
+          <FormControl fullWidth>
+            <InputLabel
+              className="select-label"
+              sx={{
+                color: "white",
+              }}
+            >
+              To
+            </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={pieceCount}
-              label="Number of Pieces"
-              onChange={handlePieceCountInput}
+              value={endValue}
+              sx={{
+                color: "white",
+              }}
+              label="To"
+              onChange={handleEndInput}
             >
-              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={11}>11</MenuItem>
+              <MenuItem value={12}>12</MenuItem>
+              <MenuItem value={13}>13</MenuItem>
+              <MenuItem value={14}>14</MenuItem>
+              <MenuItem value={15}>15</MenuItem>
+              <MenuItem value={16}>16</MenuItem>
+              <MenuItem value={17}>17</MenuItem>
+              <MenuItem value={18}>18</MenuItem>
+              <MenuItem value={19}>19</MenuItem>
+              <MenuItem value={20}>20</MenuItem>
             </Select>
-          )}
-        </FormControl>
-      </Box>
+          </FormControl>
+        </Box>
+        <Box className="honing-input">
+          <FormControl fullWidth>
+            <InputLabel
+              className="select-label"
+              sx={{
+                color: "white",
+              }}
+            >
+              Number of Pieces
+            </InputLabel>
+            {alignment === "Armor" ? (
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={pieceCount}
+                sx={{
+                  color: "white",
+                }}
+                label="Number of Pieces"
+                onChange={handlePieceCountInput}
+              >
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+              </Select>
+            ) : (
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={pieceCount}
+                sx={{
+                  color: "white",
+                }}
+                label="Number of Pieces"
+                onChange={handlePieceCountInput}
+              >
+                <MenuItem value={1}>1</MenuItem>
+              </Select>
+            )}
+          </FormControl>
+        </Box>
+      </div>
       <Button onClick={handleCalculate} variant="contained">
         Calculate
       </Button>
