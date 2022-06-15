@@ -89,8 +89,10 @@ const CostTable = ({ costArr, setCostArr }) => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell></TableCell>
-              <TableCell align="right">Optimal Combination</TableCell>
+              <TableCell style={{ width: 140 }}></TableCell>
+              <TableCell align="right" style={{ width: 190 }}>
+                Optimal Combination
+              </TableCell>
               <TableCell align="right">Avg # of Attempts</TableCell>
               <TableCell align="right">
                 <img
