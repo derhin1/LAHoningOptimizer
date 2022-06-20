@@ -7,6 +7,7 @@
 ## Deployed Site: [https://honingsim.herokuapp.com/](https://honingsim.herokuapp.com/)
 
 Site is a work in progress and I plan to add more features in the future.
+
 EDIT: I was not aware of Heroku's row limitations for the free Hobby Dev plans and so they have disabled the ability to insert data which prevents updating the market prices. I have included instructions to run the app locally.
 
 ##### Getting Started
