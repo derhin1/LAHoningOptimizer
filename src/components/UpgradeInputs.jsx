@@ -79,7 +79,7 @@ const UpgradeInputs = () => {
       <br></br>
       <br></br>
       <br></br>
-      <div className="testing123123">
+      <div className="honing-input-container">
         <Box className="honing-input">
           <FormControl fullWidth>
             <InputLabel

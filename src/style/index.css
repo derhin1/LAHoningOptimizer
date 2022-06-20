@@ -18,16 +18,16 @@ body {
   background-image: url('../images/background.png');
 }
 
-/* .market-price{
-  display:flex;
-  flex-direction: column;
-  max-width: 12rem;
+ .market-price{
+  padding-top: .1rem;
+  padding-left: 2rem;
 }
 
-.market-price-button{
-max-width: auto;
- height: auto;
-} */
+.honing-values{
+  padding-top: .1rem;
+  padding-left: 2rem;
+}
+
 
 .honing-input {
   width: 120px;
@@ -35,7 +35,6 @@ max-width: auto;
 
 .cost-table{
   margin-left: 12rem;
-  /* padding-left: 5rem; */
   width: 80rem;
 }
 
@@ -53,12 +52,6 @@ max-width: auto;
   top: 10px;
   
 }
-
-/* .table-combination-image-gold {
-  position: relative;
-  bottom: 10px;
-  left: 35px;
-} */
 
 .table-combination-header-image{
   position: relative;
@@ -83,7 +76,18 @@ max-width: auto;
   color: white;
 }
 
-.testing123123{
+.honing-input-container{
   display: flex;
   flex-direction: row;
+}
+
+.title-page{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1{
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
