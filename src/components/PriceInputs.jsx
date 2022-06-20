@@ -83,7 +83,7 @@ const PriceInputs = () => {
     <>
       {loading ? (
         <Backdrop
-          className="testing"
+          className="backDrop"
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={open}
         >
@@ -91,11 +91,14 @@ const PriceInputs = () => {
           <CircularProgress className="loading-circle" color="inherit" />
         </Backdrop>
       ) : null}
-      <div className="MarketPrice">
+      <div className="market-price">
         <h2>Market Prices</h2>
         <TextField
           id="outlined-basic"
           label="1 Guardian Stone"
+          InputLabelProps={{
+            style: { color: "#fff" },
+          }}
           variant="outlined"
           value={guardianPrice}
           inputProps={{ maxLength: 4 }}
@@ -123,6 +126,9 @@ const PriceInputs = () => {
           id="outlined-basic"
           type="text"
           label="1 Destruction Stone"
+          InputLabelProps={{
+            style: { color: "#fff" },
+          }}
           variant="outlined"
           value={destructionPrice}
           inputProps={{ maxLength: 4 }}
@@ -148,6 +154,9 @@ const PriceInputs = () => {
         <TextField
           id="outlined-basic"
           label="Great Honor Leapstone"
+          InputLabelProps={{
+            style: { color: "#fff" },
+          }}
           variant="outlined"
           value={GHLPrice}
           inputProps={{ maxLength: 3 }}
@@ -173,6 +182,9 @@ const PriceInputs = () => {
         <TextField
           id="outlined-basic"
           label="Basic Oreha Fusion Material"
+          InputLabelProps={{
+            style: { color: "#fff" },
+          }}
           variant="outlined"
           value={basicFusionPrice}
           onChange={(e) => {
@@ -198,6 +210,9 @@ const PriceInputs = () => {
         <TextField
           id="outlined-basic"
           label="Solar Grace"
+          InputLabelProps={{
+            style: { color: "#fff" },
+          }}
           variant="outlined"
           value={solarGracePrice}
           inputProps={{ maxLength: 3 }}
@@ -223,6 +238,9 @@ const PriceInputs = () => {
         <TextField
           id="outlined-basic"
           label="Solar Blessing"
+          InputLabelProps={{
+            style: { color: "#fff" },
+          }}
           variant="outlined"
           value={solarBlessingPrice}
           inputProps={{ maxLength: 3 }}
@@ -248,6 +266,9 @@ const PriceInputs = () => {
         <TextField
           id="outlined-basic"
           label="Solar Protection"
+          InputLabelProps={{
+            style: { color: "#fff" },
+          }}
           variant="outlined"
           value={solarProtectionPrice}
           onChange={(e) => {
@@ -271,7 +292,11 @@ const PriceInputs = () => {
           }}
         />
         <div>Last Updated: {lastUpdated}</div>
-        <Button onClick={updateHandler} variant="contained">
+        <Button
+          className="market-price-button"
+          onClick={updateHandler}
+          variant="contained"
+        >
           Update Market Data
         </Button>
       </div>
